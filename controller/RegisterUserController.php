@@ -2,9 +2,6 @@
     // get file from model
     require_once 'model/CrudRegister.php';
 
-    /**
-    * 
-    */
     class RegisterUserController
     {
         
@@ -17,17 +14,6 @@
 
         public function redirect($location) {
             header('Location: '.$location);
-        }
-
-        private function validateContactParams($data) {
-            $errors = array();
-            if ( !isset($data) || empty($data) ) {
-                $errors[] = 'Name is required';
-            }
-            if ( empty($errors) ) {
-                return;
-            }
-            throw new ValidationException($errors);
         }
 
         public function hendleRequest()
@@ -95,6 +81,7 @@
         public function updateRegister()
         {
             if (isset($_GET['id'])) {
+
                 $result = $this->getRegister(isset($_GET['id']) ? $_GET['id'] : null);
 
                 if (isset($_POST['submit']) && $_POST['submit'] == 'simpan') {
@@ -114,9 +101,6 @@
                     } else {
                         echo $sql;
                     }
-
-
-
                 }
 
             } else {
